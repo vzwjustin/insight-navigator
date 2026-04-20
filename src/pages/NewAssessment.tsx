@@ -32,8 +32,8 @@ const NewAssessment = () => {
 
   const template = getTemplate(industry);
 
-  const next = () => setStep(s => Math.min(3, (s + 1) as Step));
-  const prev = () => setStep(s => Math.max(0, (s - 1) as Step));
+  const next = () => setStep(s => (Math.min(3, s + 1) as Step));
+  const prev = () => setStep(s => (Math.max(0, s - 1) as Step));
 
   const submit = async () => {
     if (!user) return;
