@@ -80,7 +80,8 @@ const AssessmentDetail = () => {
 
   const updateScore = async (pp: PainPoint, key: keyof PainPoint, value: number) => {
     setPains(prev => prev.map(p => p.id === pp.id ? { ...p, [key]: value } : p));
-    const { error } = await supabase.from("pain_points").update({ [key]: value }).eq("id", pp.id);
+    const update: Record<string, number> = { [key as string]: value };
+    const { error } = await supabase.from("pain_points").update(update as never).eq("id", pp.id);
     if (error) toast.error("Failed to save");
     else load();
   };
